@@ -1,4 +1,4 @@
-# ESPNOW to Adafrut Router
+# ESPNOW to Adafruit Router
 Gets ESPNOW data from one or more sensor modules and relay/route to Adafruit IO Feeds
 ## Features:
 - Supports multiple sensors and uses a "name" attribute to route sensor data to different Adafruit IO Feeds
