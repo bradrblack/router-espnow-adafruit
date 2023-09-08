@@ -22,6 +22,8 @@ const char* WIFI_PASS = "MY_PASSWORD";
 // #define OPERATION_MODE // No Serial Debug
 #define TEST_MODE // Serial Debug on for TESTING ONLY
 
+uint32_t start;
+
 typedef struct msg
 {
   char name[32];
@@ -62,6 +64,11 @@ void OnDataRecv(const uint8_t *mac, const uint8_t *incomingData, int len)
     pooltemp2->save(sensorData.temperature);
     poolvolts2->save(sensorData.voltage);
   }
+
+  if (millis() > (start + (1000 * 60 * 60 * 24))) {    // daily restart
+    delay(2000);
+    ESP.restart();
+  }
 }
 
 void setup()
@@ -74,6 +81,8 @@ void setup()
   }
   Serial.println("\nstarted");
 #endif
+
+start = millis();
 
   // Bring up the WiFi connection
 
